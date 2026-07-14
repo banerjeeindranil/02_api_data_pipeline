@@ -1,10 +1,12 @@
 import pandas as pd
+from src.logger import logger
 
 
 def transform_users(users):
+    logger.info("Transforming user data. . .")
+
     raw_df = pd.DataFrame(users)
     working_df = raw_df.copy()
-
 
     working_df["city"] = working_df["address"].apply(
         lambda address: address["city"]
@@ -22,5 +24,7 @@ def transform_users(users):
         "company_name"
         ]
     ]
+
+    logger.info("User data transformation completed.")
 
     return working_df
